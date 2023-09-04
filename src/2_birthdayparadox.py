@@ -4,26 +4,26 @@ import random
 MONTHS = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
 
 
-def get_birthdays(num_birthdays: int):
-    # Trả về 1 list có 'num_birthdays' đối tượng date
-    birthdays = []
-    for i in range(num_birthdays):
+def get_birthdays(amount: int):
+    # Trả về 1 list có 'amount' đối tượng date
+    birthdays_list = []
+    for index in range(amount):
         start_of_year = datetime.date(2001, 1, 1)  # Năm không quan trọng
 
         random_number_of_days = datetime.timedelta(random.randint(0, 364))  # Chọn độ lệch ngẫu nhiên tính từ 1/1
-        birthday = start_of_year + random_number_of_days
-        birthdays.append(birthday)
-    return birthdays
+        random_birthday = start_of_year + random_number_of_days
+        birthdays_list.append(random_birthday)
+    return birthdays_list
 
 
-def get_match(birthdays):
+def get_match(birthdays_list):
     # Trả về đối tượng date trùng lặp trong list birthdays
-    if len(birthdays) == len(set(birthdays)):  # Do ép kiểu list sang set sẽ loại bỏ phần tử trùng lặp
+    if len(birthdays_list) == len(set(birthdays_list)):  # Do ép kiểu list sang set sẽ loại bỏ phần tử trùng lặp
         return None
 
     # Hai vòng for để tìm ngày sinh trùng lặp (có thể sắp xếp và dùng chia để trị-->nhanh hơn nếu số lần mô phỏng lớn)
-    for a, birthday_a in enumerate(birthdays):
-        for b, birthday_b in enumerate(birthdays[a+1:]):
+    for a, birthday_a in enumerate(birthdays_list):
+        for b, birthday_b in enumerate(birthdays_list[a + 1:]):
             if birthday_a == birthday_b:
                 return birthday_a
 
@@ -52,7 +52,7 @@ match = get_match(birthdays)
 
 # Display the results:
 print('Ở ví dụ này, ', end='')
-if match != None:
+if match is not None:
     month_name = MONTHS[match.month - 1]
     dateText = '{} {}'.format(month_name, match.day)
     print('nhiều hơn 1 người có ngày sinh nhật là', dateText)
@@ -71,7 +71,7 @@ for i in range(100000):
     if i % 10000 == 0:
         print(i, 'lần lặp đã hoàn thành...')
     birthdays = get_birthdays(num_birthdays)
-    if get_match(birthdays) != None:
+    if get_match(birthdays) is not None:
         num_match = num_match + 1
 print('100.000 lần lặp đã hoàn thành.')
 
