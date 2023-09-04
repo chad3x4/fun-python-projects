@@ -78,5 +78,5 @@ print('100.000 lần lặp đã hoàn thành.')
 probability = round(num_match / 100000 * 100, 2)  # Làm tròn đến 2 chữ số thập phân
 # In ra kêt quả
 print('Trong 100.000 lần lặp với', num_birthdays, 'người, đã có', num_match, 'lần xuất hiện ngày sinh trùng nhau.')
-print('Tức là cứ', num_birthdays, 'người, xác suất có ngày sinh trùng nhau là', probability, '%')
+print('Tức là cứ', num_birthdays, 'người, xác suất có ít nhất 2 người trùng ngày sinh là', probability, '%')
 print('Đó chính là nghịch lý ngày sinh nhật!')
